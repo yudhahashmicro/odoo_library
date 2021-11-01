@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id='library_book_order_action' model='ir.actions.act_window'>
+        <field name="name">Order Buku</field>
+        <field name="res_model">library.book.order</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Order Buku" id="library_book_order_menu" parent="library_base_menu" action="library_book_order_action"/>
+
+
+    <!-- Tree(List) View -->
+    <record id="library_book_order_view_tree" model="ir.ui.view">
+        <field name="name">Order Buku List</field>
+        <field name="model">library.book.order</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="buyer"/>
+                <field name="tanggal_masuk"/>  
+                <field name ="name_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View-->
+    <record id="library_book_order_view_form" model="ir.ui.view">
+        <field name="name">Order Buku Form</field>
+        <field name="model">library.book.order</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="buyer" />
+                    <field name="tanggal_masuk" />
+                    <field name="pesanan" />
+                    <field name="total_harga" />
+                    <field name="name_id" />
+                </group>
+            </form>
+        </field>
+    </record>
+
+</odoo>

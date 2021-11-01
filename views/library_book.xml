@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="library_book_action" model="ir.actions.act_window">
+        <field name="name">Buku Perpustakaan</field>
+        <field name="res_model">library.book</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Yudz Library" id="library_base_menu"/>
+    <menuitem name="Buku" id="library_book_menu" parent="library_base_menu" action="library_book_action"/>
+
+
+    <!-- Form View -->
+    <record id="library_book_view_form" model="ir.ui.view">
+        <field name="name">Kategori Buku Form</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="make_available" string="Buat Tersedia" type="object"/>
+                    <button name="make_borrowed"  string="Buat Terpinjam" type="object"/>
+                    <button name="make_lost"  string="Buat Hilang" type="object"/>
+                    <button name="make_sold" string="Buat Terjual" type="object"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="author_ids" widget="many2many_tags" />
+                        <field name="state" />
+                        <field name="pages" />
+                        <field name="notes" />
+                        <field name="currency_id"/>
+                        <field name="cost_price" />
+                        <field name="retail_price"/>
+                        <field name="category_id" />
+                        <field name="active" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="short_name"/>
+                        <field name="publisher_id"/>
+                        <field name="publisher_city" />
+                        <field name="date_release"/>
+                        <field name="date_updated" />
+                        <field name="age_days"/>
+                        <field name="cover" widget="image" class="oe_avatar"/>
+                        <field name="reader_rating" />
+                        <field name="ref_doc_id" />
+                    </group>
+                </group>
+                <group>
+                    <field name="description"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree(list) View -->
+    <record id="library_book_view_tree" model="ir.ui.view">
+        <field name="name">Kategori Buku List</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="category_id" />
+                <field name="author_ids" />
+                <field name="date_release" />
+                <field name="cost_price" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="library_book_view_search" model="ir.ui.view">
+        <field name="name">Kategori Buku Pencarian</field>
+        <field name="model">library.book</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="author_ids" />
+                <filter name="without_author" string="Without Authors" domain="[('author_ids', '=',False)]"  />
+            </search>
+        </field>
+    </record>
+
+</odoo>
